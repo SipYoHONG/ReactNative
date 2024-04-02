@@ -1,20 +1,31 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#F5FCFF', 
   },
   buttonContainer: {
-    flexDirection: 'row', 
-    justifyContent: 'space-around', 
-    width: '60%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: '80%', 
   },
   countText: {
     fontSize: 40,
     marginBottom: 20,
+  },
+  button: {
+    backgroundColor: '#007AFF', 
+    paddingHorizontal: 20, 
+    paddingVertical: 10, 
+    borderRadius: 5, 
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
   },
 });
 
@@ -23,17 +34,19 @@ export default function Counter() {
 
   return (
     <View style={styles.container}>
-    <Text style={styles.countText}>{count < 5 ? '으쨔!' : '멈춰!!'}</Text>
+    <Text style={styles.countText}>{count}</Text>
     <View style={styles.buttonContainer}>
-      <Button 
-        onPress={() => setCount(count + 1)} 
-        title="증가하기" 
-        disabled={count >= 5}
-      />
-      <Button 
-        onPress={() => setCount(0)} 
-        title="리셋" 
-      />
+      <TouchableOpacity
+          style={styles.button}
+          onPress={() => setCount(count + 1)}
+          disabled={count >= 10}>
+        <Text style={styles.buttonText}>증가하기</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+          style={styles.button}
+          onPress={() => setCount(1)}>
+          <Text style={styles.buttonText}>리셋</Text>
+        </TouchableOpacity>
     </View>
   </View>
 );

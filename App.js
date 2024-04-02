@@ -8,13 +8,15 @@ import FlatListBasic from './components/FlatListBasic';
 import SectionListBasic from './components/SectionListBasic';
 import FetchExample from './components/FetchExample';
 import Counter from './components/Counter';
+import Test from './components/Test';
 
 const logo = { uri: 'https://reactnative.dev/img/tiny_logo.png', width: 32, height: 32, };
 
 export default function App() {
   return (
     <ScrollView>
-      <Image source={logo} />
+      <Test />
+      {/* <Image source={logo} />
       <Counter />
       <Image source={logo} />
       <FetchExample />
@@ -30,7 +32,7 @@ export default function App() {
       <Cat name='Maru' num='1' />
       <Cat name='Run Tum Tugger' num='2' />
       <Image source={logo} />
-      <HelloWorld />
+      <HelloWorld /> */}
     </ScrollView>
   );
 }
