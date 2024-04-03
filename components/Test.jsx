@@ -24,9 +24,6 @@ const styles = StyleSheet.create({
     padding: 10,
     width: '30%',
   },
-  list: {
-    width: '30%',
-  },
   listItem: {
     marginTop: 10,
     padding: 10,
@@ -35,40 +32,35 @@ const styles = StyleSheet.create({
 });
 
 export default function Test() {
-  const [fruit, setFruit] = useState('');
-  const [fruitList, setFruitList] = useState([]);
-  const inputRef = useRef(null);
-  const addFruit = () => {
-    if(fruit !== '') {
-      setFruitList(prevFruitList => [...prevFruitList, fruit]);
-      setFruit('');
-      setTimeout(() => inputRef.current?.focus(), 100);
-    }
-  };
+    const [fruitList, setFruitList] = useState([]);
+    const [fruit, setFruit] = useState('');
+    const addFruit = () => {
+      if(fruit.trim().length !== 0)
+        setFruitList([...fruitList, fruit.trim()]);
+        setFruit('');
+        setTimeout(() => inputRef.current.focus(), 10);
+      }
+    const inputRef = useRef(null);
 
-  return (
-      <View style={styles.container}>
-        <View style={styles.imageContainer}>
-          <Image
-            style={styles.image} 
-            source={{uri:'https://picsum.photos/200/200'}}
-          />
-          </View>
-          <TextInput 
-            style={styles.input}
-            onChangeText={setFruit}
-            value={fruit}
-            placeholder="과일 이름을 입력하세요."
-            ref={inputRef}
-            onSubmitEditing={addFruit}
-          />
-          <FlatList 
-            style={styles.list}
-            data={fruitList}
-            keyExtractor={(_, index) => index.toString()}
-            renderItem={({ item }) => <Text style={styles.listItem}>{item}</Text>}
-          />
-      
-    </View>
-  );
-}
+    return (
+        <View style={styles.container}>
+            <Image
+              style={styles.image} 
+              source={{uri:'https://picsum.photos/200/200'}}
+            />
+            <TextInput 
+              style={styles.input}
+              placeholder="과일 이름을 입력하세요."
+              onChangeText={newText => setFruit(newText)}
+              value={fruit}
+              ref={inputRef}
+              onSubmitEditing={addFruit}
+            />
+            <FlatList 
+              data={fruitList}
+              keyExtractor={(_, index) => index.toString()}
+              renderItem={({ item }) => <Text style={styles.listItem}>{item}</Text>}
+            />
+      </View>
+    );
+  }

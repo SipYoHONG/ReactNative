@@ -17,8 +17,8 @@ export default function App() {
     <ScrollView>
       <Test />
       {/* <Image source={logo} />
-      <Counter />
-      <Image source={logo} />
+      <Counter /> */}
+      {/* <Image source={logo} />
       <FetchExample />
       <Image source={logo} />
       <SectionListBasic />
